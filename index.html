@@ -34,9 +34,18 @@
       <p id="promptText" class="prompt-text">Loading your first quest…</p>
 
       <div class="button-row">
-        <button id="drawBtn" class="primary-btn" type="button">Draw this</button>
+        <button id="drawBtn" class="primary-btn" type="button">Copy for Procreate</button>
         <button id="shuffleBtn" class="secondary-btn" type="button">Give me another</button>
       </div>
+
+      <section class="parts-card" aria-labelledby="partsTitle">
+        <h3 id="partsTitle">Tap a part to learn how to draw it</h3>
+        <div id="promptParts" class="prompt-parts" aria-label="Clickable prompt parts"></div>
+        <div id="drawingGuide" class="drawing-guide" aria-live="polite">
+          <h4 id="guideTitle">Drawing guide</h4>
+          <ol id="guideList"></ol>
+        </div>
+      </section>
 
       <details id="hintBox" class="hint-box" open>
         <summary>Tiny hint</summary>
@@ -86,7 +95,7 @@
   </main>
 
   <footer class="app-footer">
-    <p>Works offline after your first visit. Built for simple character practice inside Procreate.</p>
+    <p>Works offline after your first visit. Tap prompt parts for tiny drawing instructions. Built for simple character practice inside Procreate.</p>
   </footer>
 
   <script src="prompts.js"></script>

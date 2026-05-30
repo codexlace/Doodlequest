@@ -103,3 +103,15 @@ The app now has 40 main character types, 40 friend pairings, 40 prop prompts, ex
 ## Reset App
 
 Use the **Reset app** button in the sketchbook trail section to clear local progress, streak, and prompt history. This only affects data stored in the browser on that device.
+
+
+## Clickable Drawing Guides
+
+This version turns prompt parts into tappable chips. For example, a prompt like “Draw a curious button-eyed cloud” can expose separate tips for:
+
+- the mood, such as curious
+- the feature, such as button-eyed
+- the character base shape, such as cloud
+- the pose or simple limit
+
+The guides are deterministic and local. They use beginner-friendly rules and shape heuristics, not AI.
