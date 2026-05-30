@@ -1,14 +1,22 @@
 # Doodle Quest
 
-Doodle Quest is a beginner-friendly drawing prompt Progressive Web App for people practicing in Procreate.
+Doodle Quest is a beginner-friendly drawing prompt Progressive Web App for people practicing simple character drawings in Procreate.
+
+This simplified version is intentionally **not scene-heavy**. Most prompts are one character, a character with a tiny friend, or a character with one prop. Tiny Scene mode exists, but it only suggests a character plus one small object.
 
 It is fully static, offline-capable, installable, and ready for GitHub Pages. It does not use AI models, APIs, accounts, servers, or build tools.
 
 ## Features
 
-- Playful beginner drawing prompts
-- Practice modes: Warm-Up, Cute Character, Tiny Scene, Color Practice, Procreate Brush, Gentle Challenge
-- Tiny hints, simple steps, and extra challenges
+- Simple character-focused drawing prompts
+- Practice modes:
+  - Just a Character
+  - Character + Friend
+  - Character + Prop
+  - Faces & Feelings
+  - Brush Mini
+  - Tiny Scene
+- Tiny hints, simple steps, and optional extra challenges
 - Local progress tracking
 - Deterministic smart logic:
   - avoids recent repeated subjects
@@ -60,13 +68,15 @@ In Chrome or Edge:
 
 Prompt ingredients live in `prompts.js`.
 
-You can add more subjects, moods, actions, constraints, hints, or steps without touching the main app logic.
+To keep the app simple, add prompts that follow this rule:
+
+```txt
+One character, one friend, one prop, or one tiny object.
+No full scene unless it is intentionally tiny.
+```
 
 ## Notes
 
 This app is designed to help you practice inside Procreate. The “Draw this” button copies the prompt and hint to your clipboard when supported by the browser.
-
-
-## Icon routing update
 
 The app icons are stored at the project root as `icon-192.png` and `icon-512.png`, alongside `index.html`, so the manifest and service worker use the same relative route style as the other app files.

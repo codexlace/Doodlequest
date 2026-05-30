@@ -1,7 +1,7 @@
 {
   "name": "Doodle Quest",
   "short_name": "Doodle Quest",
-  "description": "A playful beginner drawing prompt coach for Procreate practice.",
+  "description": "A simple character-focused drawing prompt coach for Procreate practice.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

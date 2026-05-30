@@ -1,4 +1,4 @@
-const STORAGE_KEY = "doodleQuest.v1";
+const STORAGE_KEY = "doodleQuest.v2";
 const state = loadState();
 let currentPrompt = null;
 let deferredInstallPrompt = null;
@@ -7,7 +7,7 @@ const $ = (id) => document.getElementById(id);
 
 function loadState(){
   const fallback = {
-    mode: "character",
+    mode: "single",
     history: [],
     completed: 0,
     streak: 0,
@@ -47,20 +47,20 @@ function chooseDifficulty(){
 
 function getSkillForMode(mode){
   const map = {
-    warmup:"Shape",
-    character:"Character",
-    scene:"Scene",
-    color:"Color",
+    single:"Character",
+    duo:"Duo",
+    prop:"Prop",
+    expression:"Expression",
     brush:"Brush",
-    challenge:"Composition"
+    tiny:"Tiny"
   };
-  return map[mode] || "Shape";
+  return map[mode] || "Character";
 }
 
 function getTimeForDifficulty(difficulty){
-  if (difficulty === "stretch") return 45;
-  if (difficulty === "easy-plus") return 25;
-  return 15;
+  if (difficulty === "stretch") return 25;
+  if (difficulty === "easy-plus") return 20;
+  return 10;
 }
 
 function scoreSubject(subject, mode){
@@ -73,7 +73,7 @@ function scoreSubject(subject, mode){
 }
 
 function chooseSubject(mode){
-  const pool = window.DOODLE_DATA.subjects[mode] || window.DOODLE_DATA.subjects.character;
+  const pool = window.DOODLE_DATA.subjects[mode] || window.DOODLE_DATA.subjects.single;
   return [...pool].sort((a,b) => scoreSubject(b, mode) - scoreSubject(a, mode))[0];
 }
 
@@ -81,42 +81,54 @@ function buildPrompt(mode = state.mode){
   const difficulty = chooseDifficulty();
   const subject = chooseSubject(mode);
   const mood = pick(window.DOODLE_DATA.moods);
-  const action = pick(window.DOODLE_DATA.actions);
+  const pose = pick(window.DOODLE_DATA.poses);
   const constraint = pick(window.DOODLE_DATA.constraints);
   const skill = getSkillForMode(mode);
   const time = getTimeForDifficulty(difficulty);
 
   let text;
-  if (mode === "warmup") {
-    text = `Draw a ${subject}. ${constraint}`;
+  if (mode === "duo" && Array.isArray(subject)) {
+    text = `Draw a ${mood} ${subject[0]} with a tiny ${subject[1]}. ${constraint}`;
+  } else if (mode === "prop") {
+    text = `Draw a ${mood} ${subject}. ${constraint}`;
+  } else if (mode === "expression") {
+    text = `Draw a ${subject} ${pose}. Focus on the feeling, not the background.`;
   } else if (mode === "brush") {
-    text = `Pick one Procreate brush and draw ${subject}. ${constraint}`;
-  } else if (mode === "color") {
-    text = `Draw a ${mood} ${subject} with a tiny color palette. ${constraint}`;
+    text = `Pick one Procreate brush and draw ${subject}. No scene needed.`;
+  } else if (mode === "tiny") {
+    text = `Draw a ${mood} ${subject}. Keep it tiny: character plus one object only.`;
   } else {
-    text = `Draw a ${mood} ${subject} ${action}. ${constraint}`;
+    text = `Draw a ${mood} ${subject} ${pose}. ${constraint}`;
   }
+
+  const subjectName = Array.isArray(subject) ? subject.join(" + ") : subject;
 
   return {
     id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
     mode,
-    subject,
+    subject: subjectName,
     text,
     difficulty,
     skill,
     time,
-    hint: window.DOODLE_DATA.hints[skill.toLowerCase()] || window.DOODLE_DATA.hints.shapes,
+    hint: getHintForMode(mode),
     steps: window.DOODLE_DATA.steps[mode],
     challenge: getChallenge(difficulty, mode),
     createdAt: new Date().toISOString()
   };
 }
 
+function getHintForMode(mode){
+  return window.DOODLE_DATA.hints[mode] || window.DOODLE_DATA.hints.character;
+}
+
 function getChallenge(difficulty, mode){
-  if (difficulty === "stretch") return "Add one background element and one clear light source.";
-  if (mode === "color") return "Try a small accent color only once, where you want the eye to go.";
+  if (mode === "tiny") return "Keep the background to one object only, like a pillow, star, window, or teacup.";
+  if (mode === "duo") return "Show how the two characters feel about each other with their eyes or pose.";
+  if (mode === "expression") return "Draw the same face twice: one tiny version, then one cleaner version.";
   if (mode === "brush") return "Use pressure changes instead of switching brushes.";
-  return "Add one small storytelling detail, like a note, crumb trail, or tiny sign.";
+  if (difficulty === "stretch") return "Add one small storytelling detail, not a whole scene.";
+  return "Add one tiny detail, like a charm, patch, sparkle, or button.";
 }
 
 function renderPrompt(prompt){
