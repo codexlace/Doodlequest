@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#ff7a6b" />
+  <meta name="description" content="Doodle Quest is a playful beginner drawing prompt PWA for Procreate practice." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <title>Doodle Quest</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to app</a>
+
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Beginner drawing coach</p>
+      <h1>Doodle Quest</h1>
+    </div>
+    <button id="installBtn" class="ghost-btn hidden" type="button">Install</button>
+  </header>
+
+  <main id="main" class="app-shell">
+    <section class="hero-card" aria-labelledby="promptTitle">
+      <div class="prompt-topline">
+        <span id="difficultyTag" class="tag">Beginner</span>
+        <span id="timeTag" class="tag">20 min</span>
+        <span id="skillTag" class="tag">Shapes</span>
+      </div>
+
+      <h2 id="promptTitle">Today’s cozy challenge</h2>
+      <p id="promptText" class="prompt-text">Loading your first quest…</p>
+
+      <div class="button-row">
+        <button id="drawBtn" class="primary-btn" type="button">Draw this</button>
+        <button id="shuffleBtn" class="secondary-btn" type="button">Give me another</button>
+      </div>
+
+      <details id="hintBox" class="hint-box" open>
+        <summary>Tiny hint</summary>
+        <p id="hintText"></p>
+      </details>
+
+      <details id="stepsBox" class="hint-box">
+        <summary>Show simple steps</summary>
+        <ol id="stepsList"></ol>
+      </details>
+
+      <details id="challengeBox" class="hint-box">
+        <summary>Extra challenge</summary>
+        <p id="challengeText"></p>
+      </details>
+    </section>
+
+    <section class="mode-card" aria-labelledby="modeTitle">
+      <h2 id="modeTitle">Choose your practice mode</h2>
+      <div id="modeGrid" class="mode-grid" role="list"></div>
+    </section>
+
+    <section class="feedback-card" aria-labelledby="feedbackTitle">
+      <h2 id="feedbackTitle">How did it go?</h2>
+      <div class="feedback-grid">
+        <button class="feedback-btn" data-status="done" type="button">Done</button>
+        <button class="feedback-btn" data-status="too-easy" type="button">Too easy</button>
+        <button class="feedback-btn" data-status="too-hard" type="button">Too hard</button>
+        <button class="feedback-btn" data-status="skip" type="button">Skip</button>
+      </div>
+      <p id="feedbackMessage" class="microcopy" aria-live="polite"></p>
+    </section>
+
+    <section class="progress-card" aria-labelledby="progressTitle">
+      <div class="section-head">
+        <h2 id="progressTitle">Your sketchbook trail</h2>
+        <button id="resetBtn" class="text-btn" type="button">Reset</button>
+      </div>
+      <div class="stats-grid">
+        <div><strong id="doneCount">0</strong><span>completed</span></div>
+        <div><strong id="streakCount">0</strong><span>streak</span></div>
+        <div><strong id="levelText">Sprout</strong><span>level</span></div>
+      </div>
+      <h3>Recent prompts</h3>
+      <ul id="historyList" class="history-list"></ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Works offline after your first visit. Made for drawing inside Procreate, not replacing it.</p>
+  </footer>
+
+  <script src="prompts.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
