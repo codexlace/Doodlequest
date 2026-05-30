@@ -1,23 +1,27 @@
 :root {
-  --cream: #fff6e7;
-  --paper: #ffe9c8;
-  --paper-light: #fffaf0;
-  --ink: #3f2c22;
-  --muted: #806b5e;
-  --honey: #f2b84b;
-  --honey-dark: #8a5b12;
-  --peach: #f6b797;
-  --lavender: #cab7ee;
-  --bluegray: #9fb3bd;
-  --danger: #b74b4b;
-  --shadow: 0 18px 48px rgba(90, 58, 31, 0.16);
-  --small-shadow: 0 8px 24px rgba(90, 58, 31, 0.12);
-  --radius-xl: 30px;
+  --night: #171426;
+  --night-deep: #0f0c1a;
+  --desk: #241c32;
+  --paper: #fff4d8;
+  --paper-soft: #fff9ea;
+  --ink: #2f2534;
+  --muted: #6f6177;
+  --lantern: #ffd166;
+  --lantern-deep: #a35f18;
+  --coral: #ff8f70;
+  --mint: #9ee6c8;
+  --violet: #c7a5ff;
+  --blue: #9dc8ff;
+  --danger: #d85a6a;
+  --shadow: 0 24px 70px rgba(7, 5, 18, 0.42);
+  --small-shadow: 0 12px 34px rgba(7, 5, 18, 0.25);
+  --glow: 0 0 0 1px rgba(255, 209, 102, 0.18), 0 0 42px rgba(255, 209, 102, 0.16);
+  --radius-xl: 32px;
   --radius-lg: 22px;
   --radius-md: 16px;
   font-family: ui-rounded, "SF Pro Rounded", "Avenir Next Rounded", "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: var(--ink);
-  background: var(--cream);
+  color: var(--paper-soft);
+  background: var(--night);
 }
 
 * {
@@ -27,14 +31,30 @@
 html {
   min-height: 100%;
   background:
-    radial-gradient(circle at 10% 10%, rgba(246, 183, 151, 0.45), transparent 28rem),
-    radial-gradient(circle at 90% 4%, rgba(202, 183, 238, 0.42), transparent 24rem),
-    var(--cream);
+    radial-gradient(circle at 50% 0%, rgba(255, 209, 102, 0.18), transparent 24rem),
+    radial-gradient(circle at 8% 16%, rgba(199, 165, 255, 0.18), transparent 22rem),
+    radial-gradient(circle at 94% 28%, rgba(157, 200, 255, 0.14), transparent 24rem),
+    linear-gradient(180deg, #171426 0%, #0f0c1a 100%);
 }
 
 body {
   min-height: 100%;
   margin: 0;
+  background-image:
+    radial-gradient(circle, rgba(255, 244, 216, 0.18) 1px, transparent 1.4px),
+    linear-gradient(transparent, transparent);
+  background-size: 46px 46px, auto;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 49%, rgba(255, 209, 102, 0.08) 50%, transparent 51%),
+    radial-gradient(circle at 50% 7rem, rgba(255, 209, 102, 0.16), transparent 18rem);
+  opacity: 0.8;
 }
 
 button {
@@ -48,8 +68,8 @@ button {
   transform: translateY(-150%);
   padding: 0.65rem 0.85rem;
   border-radius: 999px;
-  background: var(--ink);
-  color: white;
+  background: var(--paper);
+  color: var(--ink);
   z-index: 5;
 }
 
@@ -58,10 +78,11 @@ button {
 }
 
 .app-shell {
-  width: min(760px, 100%);
+  position: relative;
+  width: min(780px, 100%);
   min-height: 100vh;
   margin: 0 auto;
-  padding: 1rem 1rem 6.5rem;
+  padding: 1rem 1rem 6.75rem;
 }
 
 .topbar {
@@ -73,11 +94,11 @@ button {
 }
 
 .eyebrow {
-  margin: 0 0 0.25rem;
-  color: var(--honey-dark);
+  margin: 0 0 0.28rem;
+  color: var(--lantern);
   font-size: 0.78rem;
-  font-weight: 900;
-  letter-spacing: 0.09em;
+  font-weight: 950;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -87,9 +108,11 @@ h1, h2, h3, p {
 
 h1 {
   margin: 0;
-  font-size: clamp(2rem, 8vw, 4.2rem);
+  color: var(--paper-soft);
+  font-size: clamp(2rem, 8vw, 4.4rem);
   line-height: 0.9;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.07em;
+  text-shadow: 0 0 30px rgba(255, 209, 102, 0.2);
 }
 
 h2 {
@@ -110,7 +133,7 @@ p {
 
 .view {
   display: none;
-  animation: floatIn 180ms ease-out;
+  animation: floatIn 190ms ease-out;
 }
 
 .view.active {
@@ -121,21 +144,43 @@ p {
   position: relative;
   margin: 0 0 1rem;
   padding: 1.1rem;
-  border: 2px solid rgba(63, 44, 34, 0.1);
+  border: 1px solid rgba(255, 244, 216, 0.2);
   border-radius: var(--radius-xl);
-  background: linear-gradient(145deg, rgba(255, 250, 240, 0.94), rgba(255, 233, 200, 0.94));
+  color: var(--ink);
+  background:
+    linear-gradient(145deg, rgba(255, 249, 234, 0.97), rgba(255, 235, 188, 0.92)),
+    repeating-linear-gradient(0deg, transparent 0 24px, rgba(47, 37, 52, 0.03) 25px 26px);
   box-shadow: var(--small-shadow);
 }
 
+.paper-card::after {
+  content: "";
+  position: absolute;
+  inset: 0.55rem;
+  border: 1px dashed rgba(47, 37, 52, 0.09);
+  border-radius: calc(var(--radius-xl) - 0.55rem);
+  pointer-events: none;
+}
+
 .hero-card {
-  padding: clamp(1.2rem, 5vw, 2rem);
+  padding: clamp(1.2rem, 5vw, 2.1rem);
   background:
-    linear-gradient(145deg, rgba(255, 250, 240, 0.95), rgba(255, 225, 188, 0.96)),
-    repeating-linear-gradient(0deg, transparent 0 22px, rgba(63, 44, 34, 0.035) 23px 24px);
-  box-shadow: var(--shadow);
+    radial-gradient(circle at 92% 8%, rgba(255, 209, 102, 0.38), transparent 8rem),
+    linear-gradient(145deg, rgba(255, 249, 234, 0.98), rgba(255, 225, 173, 0.96));
+  box-shadow: var(--shadow), var(--glow);
+}
+
+.hero-card::before {
+  content: "✦";
+  position: absolute;
+  right: 1.15rem;
+  top: 0.85rem;
+  color: rgba(163, 95, 24, 0.32);
+  font-size: 2.35rem;
 }
 
 .lesson-title {
+  color: var(--ink);
   font-size: clamp(2rem, 10vw, 4rem);
   letter-spacing: -0.06em;
 }
@@ -163,28 +208,29 @@ p {
   min-height: 44px;
   border: 0;
   border-radius: 999px;
-  padding: 0.8rem 1rem;
+  padding: 0.82rem 1.05rem;
   cursor: pointer;
-  font-weight: 900;
+  font-weight: 950;
   transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease;
 }
 
 .primary-button {
-  color: var(--ink);
-  background: var(--honey);
-  box-shadow: 0 8px 0 rgba(138, 91, 18, 0.22);
+  color: #291d20;
+  background: linear-gradient(180deg, #ffe08a, var(--lantern));
+  box-shadow: 0 8px 0 rgba(163, 95, 24, 0.28), 0 0 26px rgba(255, 209, 102, 0.28);
 }
 
 .secondary-button {
   color: var(--ink);
-  background: white;
-  border: 2px solid rgba(63, 44, 34, 0.11);
+  background: rgba(255, 255, 255, 0.82);
+  border: 2px solid rgba(47, 37, 52, 0.12);
 }
 
 .ghost-button {
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.7);
-  border: 2px dashed rgba(63, 44, 34, 0.18);
+  color: var(--paper-soft);
+  background: rgba(255, 244, 216, 0.08);
+  border: 2px dashed rgba(255, 244, 216, 0.3);
+  backdrop-filter: blur(12px);
 }
 
 .danger-button {
@@ -194,7 +240,7 @@ p {
 
 button:hover {
   transform: translateY(-1px);
-  filter: saturate(1.04);
+  filter: saturate(1.06);
 }
 
 button:active {
@@ -203,7 +249,7 @@ button:active {
 
 button:focus-visible,
 a:focus-visible {
-  outline: 4px solid rgba(159, 179, 189, 0.8);
+  outline: 4px solid rgba(255, 209, 102, 0.72);
   outline-offset: 3px;
 }
 
@@ -212,12 +258,12 @@ a:focus-visible {
 }
 
 .lesson-card::before {
-  content: "✎";
+  content: "☾";
   position: absolute;
-  top: -0.15rem;
+  top: -0.35rem;
   right: 1rem;
-  color: rgba(63, 44, 34, 0.15);
-  font-size: 5rem;
+  color: rgba(47, 37, 52, 0.13);
+  font-size: 5.5rem;
   transform: rotate(8deg);
 }
 
@@ -227,17 +273,18 @@ a:focus-visible {
 }
 
 .lesson-section {
-  padding: 0.9rem;
+  padding: 0.92rem;
+  border: 1px solid rgba(47, 37, 52, 0.08);
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.54);
 }
 
 .lesson-section.warning {
-  background: rgba(246, 183, 151, 0.25);
+  background: rgba(255, 143, 112, 0.2);
 }
 
 .lesson-section.spell {
-  background: rgba(202, 183, 238, 0.25);
+  background: rgba(199, 165, 255, 0.23);
 }
 
 .lesson-section ul,
@@ -271,9 +318,10 @@ a:focus-visible {
   align-items: center;
   border-radius: 999px;
   padding: 0.4rem 0.65rem;
-  background: rgba(202, 183, 238, 0.25);
+  color: #2f2534;
+  background: rgba(157, 230, 200, 0.42);
   font-size: 0.92rem;
-  font-weight: 800;
+  font-weight: 850;
 }
 
 .stash-card {
@@ -298,15 +346,16 @@ a:focus-visible {
   right: 1rem;
   bottom: 1rem;
   left: 1rem;
+  z-index: 4;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.35rem;
-  width: min(728px, calc(100% - 2rem));
+  width: min(748px, calc(100% - 2rem));
   margin: 0 auto;
   padding: 0.45rem;
-  border: 2px solid rgba(63, 44, 34, 0.1);
+  border: 1px solid rgba(255, 244, 216, 0.24);
   border-radius: 999px;
-  background: rgba(255, 250, 240, 0.88);
+  background: rgba(23, 20, 38, 0.78);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
 }
@@ -315,15 +364,16 @@ a:focus-visible {
   min-height: 48px;
   border: 0;
   border-radius: 999px;
-  color: var(--muted);
+  color: rgba(255, 244, 216, 0.72);
   background: transparent;
   cursor: pointer;
-  font-weight: 900;
+  font-weight: 950;
 }
 
 .nav-button.active {
-  color: var(--ink);
-  background: var(--paper);
+  color: #241c32;
+  background: var(--lantern);
+  box-shadow: 0 0 18px rgba(255, 209, 102, 0.18);
 }
 
 .hidden {

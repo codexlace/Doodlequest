@@ -1,12 +1,12 @@
 {
-  "name": "ScribbleNest \u2014 Tiny Drawing Lessons",
+  "name": "ScribbleNest — Tiny Drawing Lessons",
   "short_name": "ScribbleNest",
-  "description": "A cozy beginner drawing PWA for Procreate: one tiny drawing recipe, clear steps, and redraw practice.",
+  "description": "A lantern-lit beginner drawing PWA for Procreate: one tiny drawing recipe, clear steps, and redraw practice.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#fff6e7",
-  "theme_color": "#f7dfb6",
+  "background_color": "#171426",
+  "theme_color": "#171426",
   "orientation": "portrait",
   "icons": [
     {

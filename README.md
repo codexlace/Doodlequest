@@ -1,8 +1,8 @@
 # ScribbleNest
 
-A cozy, static, offline-first PWA for beginner Procreate drawing practice.
+A cozy, lantern-lit, static, offline-first PWA for beginner Procreate drawing practice.
 
-ScribbleNest is not a prompt machine. It is a tiny drawing teacher: each idea becomes a micro-lesson card with a starting shape, build order, Procreate setup, beginner trap, and redraw challenge.
+ScribbleNest is not a prompt machine. It is a tiny drawing teacher: each idea becomes a micro-lesson card with a starting shape, build order, Procreate setup, beginner trap, and redraw challenge. This version uses a Doodle Lantern visual theme and includes 20 Tiny Build prompts plus 9 practice cards.
 
 ## Files
 
