@@ -95,3 +95,14 @@ No full background unless the prompt intentionally says Tiny Scene.
 ## Local storage
 
 The app stores progress only in the browser on the current device. The reset button clears local history, saved prompts, streaks, and skill progress.
+
+
+## v9 Simple iPad Update
+
+This version shortens the prompt text so the main card stays calm and beginner-friendly. Drawing help now lives in the tap-to-learn chips and the draw steps instead of inside long prompt sentences.
+
+Layout updates:
+- iPad portrait uses a two-column learning layout with the main doodle on the left and controls on the right.
+- iPad landscape uses a three-column desk layout: practice controls, main doodle, and progress/actions.
+- The manifest orientation is set to `any`, so the installed PWA can rotate between portrait and landscape.
+- Service worker cache version: `tiny-character-lab-v9-simple-ipad`.

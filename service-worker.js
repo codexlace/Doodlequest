@@ -1,4 +1,4 @@
-const CACHE_NAME = "tiny-character-lab-v8-studio-desk";
+const CACHE_NAME = "tiny-character-lab-v9-simple-ipad";
 const APP_SHELL = [
   "./",
   "./index.html",

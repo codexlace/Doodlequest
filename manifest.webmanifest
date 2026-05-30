@@ -1,13 +1,13 @@
 {
   "name": "Tiny Character Lab",
   "short_name": "Tiny Lab",
-  "description": "A cozy offline drawing coach for tiny object-soul characters and Procreate practice.",
+  "description": "A simple offline drawing coach for tiny character practice on iPad and Procreate.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#fff7e8",
   "theme_color": "#ff7a6b",
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "icons": [
     {
       "src": "icon-192.png",

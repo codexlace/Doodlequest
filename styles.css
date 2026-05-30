@@ -468,3 +468,255 @@ button:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
     100%{transform:rotate(0)}
   }
 }
+
+
+/* v9: simpler prompts + iPad portrait/landscape optimization */
+:root{
+  --max:1280px;
+}
+
+.app-shell{
+  padding-left:max(0px, env(safe-area-inset-left));
+  padding-right:max(0px, env(safe-area-inset-right));
+}
+
+.prompt-text{
+  max-width:18ch;
+  font-size:clamp(1.85rem, 7vw, 3.6rem);
+  line-height:1.04;
+  letter-spacing:-.045em;
+}
+
+.hero-card{
+  min-width:0;
+}
+
+.parts-card,
+.drawalong-card{
+  min-width:0;
+}
+
+.prompt-parts{
+  gap:.45rem;
+}
+
+.part-chip{
+  padding:.48rem .68rem;
+}
+
+.drawalong-list li,
+.drawing-guide li,
+.hint-box p,
+.hint-box ol{
+  line-height:1.32;
+}
+
+@media (min-width:700px) and (max-width:1023px){
+  .app-header{
+    width:min(100% - 2rem, 940px);
+    padding-top:max(1rem, env(safe-area-inset-top));
+  }
+
+  .app-shell{
+    width:min(100% - 2rem, 940px);
+    grid-template-columns:minmax(0,1fr) minmax(260px,320px);
+    gap:1rem;
+  }
+
+  .coach-card{
+    grid-column:1 / -1;
+  }
+
+  .goal-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    overflow:visible;
+    padding:0;
+  }
+
+  .goal-btn{
+    flex:auto;
+    width:100%;
+    min-height:4.15rem;
+    padding:.62rem;
+  }
+
+  .goal-btn strong,
+  .mode-btn strong{
+    font-size:.9rem;
+  }
+
+  .goal-btn span,
+  .mode-btn span{
+    font-size:.72rem;
+  }
+
+  .hero-card{
+    grid-column:1 / 2;
+    grid-row:auto / span 5;
+    padding:1.15rem;
+  }
+
+  .warmup-card,
+  .mode-card,
+  .feedback-card,
+  .progress-card{
+    grid-column:2 / 3;
+  }
+
+  .prompt-text{
+    max-width:17ch;
+    font-size:clamp(2.05rem,5vw,3.2rem);
+  }
+
+  .button-row{
+    gap:.5rem;
+  }
+
+  .primary-btn,
+  .secondary-btn,
+  .ghost-btn,
+  .feedback-btn{
+    padding:.72rem .78rem;
+    border-radius:16px;
+  }
+
+  .lab-card{
+    padding:.85rem;
+    margin-top:.85rem;
+  }
+
+  .guide-extra{
+    grid-template-columns:1fr;
+  }
+
+  .mode-grid,
+  .feedback-grid{
+    grid-template-columns:1fr;
+  }
+
+  .stats-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+
+@media (min-width:1024px){
+  .app-header,
+  .app-footer{
+    width:min(var(--max),calc(100% - 2.5rem));
+  }
+
+  .app-shell{
+    width:min(var(--max),calc(100% - 2.5rem));
+    grid-template-columns:220px minmax(420px,1fr) 290px;
+    gap:1.1rem;
+  }
+
+  .coach-card{grid-column:1 / 2}
+  .warmup-card{grid-column:1 / 2}
+  .hero-card{
+    grid-column:2 / 3;
+    grid-row:1 / span 6;
+    padding:1.25rem;
+  }
+  .mode-card,.feedback-card,.progress-card{grid-column:3 / 4}
+
+  .prompt-text{
+    max-width:18ch;
+    font-size:clamp(2.2rem,3.75vw,3.75rem);
+  }
+
+  .parts-card{
+    margin-top:.9rem;
+  }
+
+  .drawalong-card{
+    margin-top:.9rem;
+  }
+
+  .guide-extra{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+
+  .mode-grid,.feedback-grid{
+    grid-template-columns:1fr;
+  }
+
+  .goal-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    overflow:visible;
+    padding:0;
+  }
+
+  .goal-btn{
+    flex:auto;
+    width:100%;
+    min-height:4.25rem;
+  }
+}
+
+@media (orientation:landscape) and (min-width:900px) and (max-height:850px){
+  .app-header{
+    padding:.7rem 0 .35rem;
+  }
+
+  h1{
+    font-size:clamp(1.65rem,3.8vw,2.9rem);
+  }
+
+  .tagline{
+    font-size:.9rem;
+  }
+
+  .app-shell{
+    margin-top:.65rem;
+    gap:.85rem;
+  }
+
+  .desk-card,
+  .sticky-note{
+    border-radius:20px;
+  }
+
+  .sticky-note,
+  .desk-card,
+  .lab-card{
+    box-shadow:0 7px 0 var(--ink),0 12px 22px var(--shadow);
+  }
+
+  .prompt-text{
+    font-size:clamp(2rem,3.2vw,3.05rem);
+    margin:.45rem 0 .75rem;
+  }
+
+  .warmup-text{
+    font-size:1.02rem;
+  }
+
+  .lab-card{
+    padding:.75rem;
+  }
+
+  .drawalong-list{
+    gap:.42rem;
+  }
+
+  .drawalong-list li{
+    padding:.58rem .65rem .58rem 2.45rem;
+  }
+
+  .drawing-guide{
+    padding:.75rem;
+  }
+
+  .hint-box{
+    padding:.62rem .75rem;
+  }
+}
+
+@media (max-width:480px){
+  .prompt-text{
+    max-width:14ch;
+  }
+}

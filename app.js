@@ -1,4 +1,4 @@
-const STORAGE_KEY = "tinyCharacterLab.v8-studio-desk";
+const STORAGE_KEY = "tinyCharacterLab.v9-simple-ipad";
 const state = loadState();
 let currentPrompt = null;
 let deferredInstallPrompt = null;
@@ -432,9 +432,9 @@ function getSkillForMode(mode){
 }
 
 function getTimeForDifficulty(difficulty){
-  if (difficulty === "stretch") return 25;
-  if (difficulty === "easy-plus") return 20;
-  return 10;
+  if (difficulty === "stretch") return 15;
+  if (difficulty === "easy-plus") return 12;
+  return 8;
 }
 
 function scoreSubject(subject, mode){
@@ -470,17 +470,17 @@ function buildPrompt(mode = state.mode){
 
   let text;
   if (mode === "duo" && Array.isArray(subject)) {
-    text = `Draw a ${mood} ${subject[0]} with a ${subject[1]}. ${constraint}`;
+    text = `Draw: ${subject[0]} + ${subject[1]}.`;
   } else if (mode === "prop") {
-    text = `Draw a ${mood} ${subject}. ${constraint}`;
+    text = `Draw: ${subject}.`;
   } else if (mode === "expression") {
-    text = `Draw a ${subject} ${pose}. Focus on the feeling, not the background.`;
+    text = `Draw: ${subject}.`;
   } else if (mode === "brush") {
-    text = `Pick one Procreate brush and draw ${subject}. No scene needed.`;
+    text = `Practice: ${subject}.`;
   } else if (mode === "tiny") {
-    text = `Draw a ${mood} ${subject}. Keep it tiny: character plus one object only.`;
+    text = `Draw: ${subject}.`;
   } else {
-    text = `Draw a ${mood} ${subject} ${pose}. ${constraint}`;
+    text = `Draw: ${mood} ${subject}.`;
   }
 
   const subjectName = Array.isArray(subject) ? subject.join(" + ") : subject;
@@ -505,13 +505,13 @@ function buildPrompt(mode = state.mode){
 
 function getGoalLimit(fallback){
   const map = {
-    shapes: "Use one main shape first. No full background needed.",
-    faces: "Make the face readable before adding details.",
-    props: "Add one prop only. Make it big enough to read.",
-    poses: "Show the pose with a simple lean or float.",
-    line: "Keep the lines confident and redraw once if needed.",
-    color: "Use 3 colors or fewer.",
-    variation: "Change only one thing from version to version."
+    shapes: "One big shape.",
+    faces: "Face first.",
+    props: "One prop only.",
+    poses: "Show the lean.",
+    line: "Redraw once.",
+    color: "3 colors max.",
+    variation: "Change one thing."
   };
   return map[state.goal] || fallback;
 }
@@ -522,21 +522,20 @@ function getHintForMode(mode){
 
 function getChallenge(difficulty, mode){
   const goalChallenges = {
-    shapes:"Redraw it once with a rounder shape and once with a pointier shape.",
-    faces:"Draw three tiny face options before choosing one.",
-    props:"Make the prop readable even if the drawing is very small.",
-    poses:"Draw the pose once stiff, then once with more tilt.",
-    line:"Trace over only the best lines on a new layer.",
-    color:"Use one main color, one shadow color, and one accent.",
-    variation:"Draw three versions and change only the expression."
+    shapes:"Redraw it once using an even simpler shape.",
+    faces:"Try two face options, then keep the clearer one.",
+    props:"Make the prop bigger and simpler.",
+    poses:"Draw it once still, then once leaning.",
+    line:"Clean up only the best lines on a new layer.",
+    color:"Use one main color, one shadow, one accent.",
+    variation:"Draw two versions and change only the face."
   };
   if (goalChallenges[state.goal]) return goalChallenges[state.goal];
-  if (mode === "tiny") return "Keep it to one anchor object only, like a pillow, stamp, paperclip, saucer, or moon rock.";
-  if (mode === "duo") return "Show the relationship with eye direction, spacing, or a tiny gesture.";
-  if (mode === "expression") return "Draw the same face twice: one tiny version, then one cleaner version.";
-  if (mode === "brush") return "Repeat the idea with small variations instead of adding more detail.";
-  if (difficulty === "stretch") return "Add one small storytelling detail, not a whole scene.";
-  return "Add one tiny detail, like a sparkle, patch, stamp, ribbon, or button.";
+  if (mode === "tiny") return "Keep it to one object only.";
+  if (mode === "duo") return "Make the buddy tiny.";
+  if (mode === "expression") return "Make the face readable while small.";
+  if (mode === "brush") return "Repeat the simple shape.";
+  return "Add one tiny detail, then stop.";
 }
 
 function getWhyThisHelps(mode, skill){
@@ -553,25 +552,28 @@ function getWhyThisHelps(mode, skill){
 }
 
 function getDrawAlongSteps(mode, subject, mood, pose){
-  const base = [];
   if (mode === "brush") {
     return [
-      "Open Procreate and choose one brush.",
-      "Draw the first tiny version with the simplest possible shape.",
-      "Repeat it several times, changing only one small thing each time.",
-      "Circle or mark the version that reads best.",
-      "Redraw that version once cleaner."
+      "Pick one brush.",
+      "Draw a tiny version.",
+      "Repeat it with one small change.",
+      "Circle the clearest one."
     ];
   }
-  base.push("Draw the biggest simple shape first.");
-  base.push("Add the face before any decorations.");
-  if (mode === "duo") base.push("Add the tiny friend at about one-third the main character’s size.");
-  else if (mode === "prop") base.push("Add the one prop as a clear, slightly oversized silhouette.");
-  else if (mode === "tiny") base.push("Add only the tiny anchor object or surface.");
-  else base.push(`Show the ${pose || "pose"} with a simple lean, float, or tiny feet.`);
-  base.push("Add one tiny detail that supports the idea.");
-  base.push("Do a clean-up pass: keep the best lines and remove clutter.");
-  return base;
+
+  const steps = [
+    "Draw one big shape.",
+    "Add the face.",
+  ];
+
+  if (mode === "duo") steps.push("Add the tiny friend.");
+  else if (mode === "prop") steps.push("Add one simple prop.");
+  else if (mode === "tiny") steps.push("Add one tiny anchor object.");
+  else steps.push("Add a small pose or tilt.");
+
+  steps.push("Add one tiny detail.");
+  steps.push("Clean up the best lines.");
+  return steps;
 }
 
 function renderPrompt(prompt){
@@ -884,9 +886,9 @@ function resetApp(){
 
 function copyPrompt(){
   const steps = (currentPrompt.drawAlong || []).map((step, index) => `${index + 1}. ${step}`).join("\n");
-  const text = `Tiny Character Lab Prompt\n\n${currentPrompt.text}\n\nWarm-up:\n${$("warmupText").textContent}\n\nDraw-along:\n${steps}\n\nHint: ${currentPrompt.hint}\nSkill: ${currentPrompt.skill} · ${currentPrompt.time} min · ${formatDifficulty(currentPrompt.difficulty)}\nLimit: 3 colors or fewer. No full background needed.`;
+  const text = `Tiny Character Lab\n\n${currentPrompt.text}\n\nWarm-up: ${$("warmupText").textContent}\n\nSteps:\n${steps}\n\nLimit: one character idea, 3 colors max, no full background.`;
   navigator.clipboard?.writeText(text).then(() => {
-    $("feedbackMessage").textContent = "Prompt copied. Paste it into a Procreate reference note.";
+    $("feedbackMessage").textContent = "Prompt copied for Procreate.";
   }).catch(() => {
     $("feedbackMessage").textContent = "Use this prompt in Procreate when you are ready.";
   });
