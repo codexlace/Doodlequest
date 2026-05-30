@@ -80,3 +80,26 @@ No full scene unless it is intentionally tiny.
 This app is designed to help you practice inside Procreate. The “Draw this” button copies the prompt and hint to your clipboard when supported by the browser.
 
 The app icons are stored at the project root as `icon-192.png` and `icon-512.png`, alongside `index.html`, so the manifest and service worker use the same relative route style as the other app files.
+
+
+## Updated Prompt Set
+
+This version uses the newer object-soul and ghosty prompt system: pocket ghosts, envelope spirits, pencil kids, ink blobs, sleepy moons, tiny planets, sticker blobs, window spirits, spellbooks, and other beginner-friendly little weirdos. The prompt engine is intentionally simple: one character, one buddy, one prop, or one tiny anchor object.
+
+## Character Lab Expansion
+
+This build adds 20 more character types plus matching tiny friends and simple props in the same object-soul style.
+
+New examples include:
+- tiny receipt goblin + coupon scrap friend
+- sleepy acorn sprite + leaf blanket buddy
+- bubble tea ghost + tapioca pet
+- paper bag bat + sticker moon friend
+- soft cactus kid + pebble pal
+- tiny snowglobe spirit + snowflake friend
+
+The app now has 40 main character types, 40 friend pairings, 40 prop prompts, expanded faces/feelings, expanded brush minis, and expanded tiny scene anchors.
+
+## Reset App
+
+Use the **Reset app** button in the sketchbook trail section to clear local progress, streak, and prompt history. This only affects data stored in the browser on that device.

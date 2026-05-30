@@ -1,4 +1,4 @@
-const STORAGE_KEY = "doodleQuest.v2";
+const STORAGE_KEY = "doodleQuest.v3-character-lab";
 const state = loadState();
 let currentPrompt = null;
 let deferredInstallPrompt = null;
@@ -88,7 +88,7 @@ function buildPrompt(mode = state.mode){
 
   let text;
   if (mode === "duo" && Array.isArray(subject)) {
-    text = `Draw a ${mood} ${subject[0]} with a tiny ${subject[1]}. ${constraint}`;
+    text = `Draw a ${mood} ${subject[0]} with a ${subject[1]}. ${constraint}`;
   } else if (mode === "prop") {
     text = `Draw a ${mood} ${subject}. ${constraint}`;
   } else if (mode === "expression") {
@@ -119,16 +119,16 @@ function buildPrompt(mode = state.mode){
 }
 
 function getHintForMode(mode){
-  return window.DOODLE_DATA.hints[mode] || window.DOODLE_DATA.hints.character;
+  return window.DOODLE_DATA.hints[mode] || window.DOODLE_DATA.hints.single || window.DOODLE_DATA.hints.character || "";
 }
 
 function getChallenge(difficulty, mode){
-  if (mode === "tiny") return "Keep the background to one object only, like a pillow, star, window, or teacup.";
-  if (mode === "duo") return "Show how the two characters feel about each other with their eyes or pose.";
+  if (mode === "tiny") return "Keep it to one anchor object only, like a pillow, stamp, paperclip, saucer, or moon rock.";
+  if (mode === "duo") return "Show the relationship with eye direction, spacing, or a tiny gesture.";
   if (mode === "expression") return "Draw the same face twice: one tiny version, then one cleaner version.";
-  if (mode === "brush") return "Use pressure changes instead of switching brushes.";
+  if (mode === "brush") return "Repeat the idea with small variations instead of adding more detail.";
   if (difficulty === "stretch") return "Add one small storytelling detail, not a whole scene.";
-  return "Add one tiny detail, like a charm, patch, sparkle, or button.";
+  return "Add one tiny detail, like a sparkle, patch, stamp, ribbon, or button.";
 }
 
 function renderPrompt(prompt){
@@ -257,6 +257,9 @@ function getLevelName(done){
 }
 
 function resetApp(){
+  const shouldReset = window.confirm("Reset Doodle Quest? This clears your local prompt history, streak, and progress.");
+  if (!shouldReset) return;
+
   localStorage.removeItem(STORAGE_KEY);
   Object.assign(state, loadState());
   saveState();

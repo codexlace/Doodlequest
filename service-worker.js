@@ -1,4 +1,4 @@
-const CACHE_NAME = "doodle-quest-v3-simple";
+const CACHE_NAME = "doodle-quest-v5-character-lab";
 const APP_SHELL = [
   "./",
   "./index.html",
