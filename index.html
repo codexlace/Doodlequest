@@ -1,178 +1,103 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#ff7a6b" />
-  <meta name="description" content="Tiny Character Lab is a cozy offline drawing coach for small object-soul characters and Procreate practice." />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="apple-touch-icon" href="icon-192.png" />
-  <link rel="icon" href="icon-192.png" />
-  <title>Tiny Character Lab</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScribbleNest — Tiny Drawing Lessons</title>
+  <meta name="description" content="A cozy beginner drawing PWA for Procreate: tiny drawing recipes, redraw challenges, and shape practice.">
+  <meta name="theme-color" content="#f7dfb6">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon-192.png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to app</a>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="app-header">
-    <div class="brand-lockup">
-      <span class="brand-mark" aria-hidden="true">✎</span>
+  <div class="app-shell">
+    <header class="topbar" aria-label="App header">
       <div>
-        <p class="eyebrow">Tiny Studio Desk</p>
-        <h1>Tiny Character Lab</h1>
-        <p class="tagline">Simple tiny prompts for Procreate.</p>
+        <p class="eyebrow">Tiny Drawing Lessons</p>
+        <h1>ScribbleNest</h1>
       </div>
+      <button id="installBtn" class="ghost-button hidden" type="button">Install</button>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section id="homeView" class="view active" aria-labelledby="homeTitle">
+        <div class="hero-card paper-card">
+          <p class="eyebrow">Today’s Tiny Build</p>
+          <h2 id="homeTitle" class="lesson-title">Loading tiny lesson…</h2>
+          <p id="startShape" class="start-shape"></p>
+
+          <div class="action-row">
+            <button id="newBuildBtn" class="primary-button" type="button">Give Me a Tiny Build</button>
+            <button id="saveBtn" class="secondary-button" type="button">Save to Stash</button>
+          </div>
+        </div>
+
+        <article id="lessonCard" class="paper-card lesson-card" aria-live="polite"></article>
+
+        <section class="paper-card check-card" aria-labelledby="checkTitle">
+          <h2 id="checkTitle">Check Your Drawing</h2>
+          <ul class="checklist">
+            <li>Can you still see the main shape?</li>
+            <li>Is the face easy to read?</li>
+            <li>Is there only one main detail?</li>
+            <li>Could you redraw it simpler?</li>
+          </ul>
+        </section>
+      </section>
+
+      <section id="practiceView" class="view" aria-labelledby="practiceTitle">
+        <div class="paper-card">
+          <p class="eyebrow">Shape Practice</p>
+          <h2 id="practiceTitle">Small drills that do not feel like homework</h2>
+          <p>Pick one tiny practice card and draw five versions.</p>
+        </div>
+        <div id="practiceList" class="card-list"></div>
+      </section>
+
+      <section id="stashView" class="view" aria-labelledby="stashTitle">
+        <div class="paper-card">
+          <p class="eyebrow">Saved Paper Scraps</p>
+          <h2 id="stashTitle">Your Stash</h2>
+          <p>Saved builds, drawn status, and redraw counts live only on this device.</p>
+        </div>
+        <div id="stashList" class="stash-grid"></div>
+      </section>
+
+      <section id="resetView" class="view" aria-labelledby="resetTitle">
+        <div class="paper-card danger-card">
+          <p class="eyebrow">Fresh Notebook</p>
+          <h2 id="resetTitle">Reset ScribbleNest</h2>
+          <p>This clears saved lessons, drawn history, redraw counts, and the current card from this browser.</p>
+          <button id="resetBtn" class="danger-button" type="button">Clear saved data</button>
+        </div>
+
+        <div class="paper-card">
+          <h2>Offline Notes</h2>
+          <p>ScribbleNest is a static PWA. After the first visit, it caches the app shell and lessons so the teacher card keeps working offline.</p>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-button active" data-view="homeView" type="button">Home</button>
+      <button class="nav-button" data-view="practiceView" type="button">Practice</button>
+      <button class="nav-button" data-view="stashView" type="button">Stash</button>
+      <button class="nav-button" data-view="resetView" type="button">Reset</button>
+    </nav>
+  </div>
+
+  <template id="lessonTemplate">
+    <div class="lesson-section">
+      <h3>Start Here</h3>
+      <p data-field="startHere"></p>
     </div>
-    <button id="installBtn" class="ghost-btn hidden" type="button">Install</button>
-  </header>
+  </template>
 
-  <main id="main" class="app-shell">
-    <section class="coach-card desk-card" aria-labelledby="goalTitle">
-      <div class="section-kicker">
-        <p class="eyebrow">Today’s Practice</p>
-        <h2 id="goalTitle">Pick one tiny skill</h2>
-      </div>
-      <div id="goalGrid" class="goal-grid" role="list"></div>
-    </section>
-
-    <section class="warmup-card desk-card sticky-note mini-note" aria-labelledby="warmupTitle">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Before the doodle</p>
-          <h2 id="warmupTitle">Tiny Warm-Up</h2>
-        </div>
-        <button id="newWarmupBtn" class="text-btn" type="button">New warm-up</button>
-      </div>
-      <p id="warmupText" class="warmup-text">Loading a tiny warm-up…</p>
-      <p id="warmupWhy" class="microcopy"></p>
-    </section>
-
-    <section class="hero-card sticky-note main-note" aria-labelledby="promptTitle">
-      <div class="prompt-topline">
-        <span id="difficultyTag" class="tag">Beginner</span>
-        <span id="timeTag" class="tag">20 min</span>
-        <span id="skillTag" class="tag">Shapes</span>
-      </div>
-
-      <p class="eyebrow">Tiny study</p>
-      <h2 id="promptTitle">Main Doodle</h2>
-      <p id="promptText" class="prompt-text">Loading your first little weirdo…</p>
-
-      <div class="button-row prompt-actions">
-        <button id="drawBtn" class="primary-btn" type="button">Copy for Procreate</button>
-        <button id="favoriteBtn" class="secondary-btn save-btn" type="button" aria-pressed="false">♡ Save</button>
-        <button id="shuffleBtn" class="secondary-btn" type="button">Fresh prompt</button>
-      </div>
-
-      <section class="parts-card lab-card" aria-labelledby="partsTitle">
-        <div class="section-kicker">
-          <p class="eyebrow">Sticker chips</p>
-          <h3 id="partsTitle">Tap a part for drawing help</h3>
-        </div>
-        <div id="promptParts" class="prompt-parts" aria-label="Clickable prompt parts"></div>
-        <div id="drawingGuide" class="drawing-guide" aria-live="polite">
-          <h4 id="guideTitle">Drawing guide</h4>
-          <ol id="guideList"></ol>
-          <div class="guide-extra">
-            <p><strong>Try</strong><span id="guideTry"></span></p>
-            <p><strong>Avoid</strong><span id="guideAvoid"></span></p>
-            <p><strong>Mini challenge</strong><span id="guideChallenge"></span></p>
-          </div>
-        </div>
-      </section>
-
-      <section class="drawalong-card lab-card" aria-labelledby="drawalongTitle">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Simple checklist</p>
-            <h3 id="drawalongTitle">Draw Steps</h3>
-          </div>
-          <button id="restartDrawAlongBtn" class="text-btn" type="button">Restart</button>
-        </div>
-        <ol id="drawAlongList" class="drawalong-list"></ol>
-        <button id="nextStepBtn" class="secondary-btn" type="button">Next step</button>
-      </section>
-
-      <details id="hintBox" class="hint-box" open>
-        <summary>Tiny hint</summary>
-        <p id="hintText"></p>
-      </details>
-
-      <details id="stepsBox" class="hint-box">
-        <summary>Simple steps</summary>
-        <ol id="stepsList"></ol>
-      </details>
-
-      <details id="challengeBox" class="hint-box">
-        <summary>Extra tiny challenge</summary>
-        <p id="challengeText"></p>
-      </details>
-
-      <details id="whyBox" class="hint-box">
-        <summary>Why this helps</summary>
-        <p id="whyText"></p>
-      </details>
-    </section>
-
-    <section class="mode-card desk-card" aria-labelledby="modeTitle">
-      <div class="section-kicker">
-        <p class="eyebrow">Prompt drawer</p>
-        <h2 id="modeTitle">Choose a prompt type</h2>
-      </div>
-      <div id="modeGrid" class="mode-grid" role="list"></div>
-    </section>
-
-    <section class="feedback-card desk-card" aria-labelledby="feedbackTitle">
-      <div class="section-kicker">
-        <p class="eyebrow">After drawing</p>
-        <h2 id="feedbackTitle">How did it feel?</h2>
-      </div>
-      <div class="feedback-grid">
-        <button class="feedback-btn" data-status="done" type="button">Done</button>
-        <button class="feedback-btn" data-status="too-simple" type="button">Too simple</button>
-        <button class="feedback-btn" data-status="too-much" type="button">Too much</button>
-        <button class="feedback-btn" data-status="skip" type="button">Skip</button>
-      </div>
-      <p id="feedbackMessage" class="microcopy" aria-live="polite"></p>
-    </section>
-
-    <section class="progress-card desk-card" aria-labelledby="progressTitle">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Sketchbook shelf</p>
-          <h2 id="progressTitle">Practice Trail</h2>
-        </div>
-        <button id="resetBtn" class="text-btn danger-link" type="button" aria-label="Reset app progress and prompt history">Reset app</button>
-      </div>
-
-      <div class="stats-grid">
-        <div><strong id="doneCount">0</strong><span>completed</span></div>
-        <div><strong id="streakCount">0</strong><span>streak</span></div>
-        <div><strong id="levelText">Sprout</strong><span>level</span></div>
-      </div>
-
-      <details class="shelf-details" open>
-        <summary>Skill practice</summary>
-        <div id="skillProgress" class="skill-progress"></div>
-      </details>
-
-      <details class="shelf-details">
-        <summary>Saved Doodles</summary>
-        <ul id="favoritesList" class="history-list"></ul>
-      </details>
-
-      <details class="shelf-details">
-        <summary>Recent prompts</summary>
-        <ul id="historyList" class="history-list"></ul>
-      </details>
-    </section>
-  </main>
-
-  <footer class="app-footer">
-    <p>Works offline after your first visit. Optimized for iPad portrait and landscape.</p>
-  </footer>
-
-  <script src="prompts.js"></script>
-  <script src="app.js"></script>
+  <script src="./lessons.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
