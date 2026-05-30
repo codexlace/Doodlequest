@@ -115,3 +115,22 @@ This version turns prompt parts into tappable chips. For example, a prompt like 
 - the pose or simple limit
 
 The guides are deterministic and local. They use beginner-friendly rules and shape heuristics, not AI.
+
+
+## v7 Learning Coach
+
+This build turns Doodle Quest from a prompt generator into a small offline learning coach.
+
+New learning-tool features:
+
+- **Learning goal selector** for faces, cute shapes, props, tiny poses, line confidence, color, and variations.
+- **60-second warm-up** matched to the chosen learning goal.
+- **Draw-along mode** that breaks every prompt into beginner-friendly steps.
+- **Clickable guide chips** with steps, Try, Avoid, and Mini challenge guidance.
+- **Favorites / saved prompts** for drawing later.
+- **Feedback changed to Done / Too simple / Too much / Skip** so the app can reduce clutter when prompts feel overwhelming.
+- **Skill progress tracking** for Character, Expression, Prop, Brush, Duo, and Tiny practice.
+- **Reset app** clears local history, saved prompts, streaks, and skill progress.
+- Service worker cache updated to `doodle-quest-v7-learning-coach`.
+
+All logic is deterministic and browser-only. No AI models, APIs, accounts, servers, build tools, or environment variables are used.

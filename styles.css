@@ -218,3 +218,136 @@ button:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
 .drawing-guide li{
   margin:.25rem 0;
 }
+
+
+/* v7 learning coach additions */
+.coach-card,.warmup-card{
+  background:var(--card);
+  border:var(--line);
+  border-radius:28px;
+  box-shadow:var(--shadow);
+  padding:1rem;
+}
+.goal-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.7rem;
+}
+.goal-btn{
+  border:2px solid var(--ink);
+  border-radius:20px;
+  background:#fff;
+  padding:.85rem;
+  text-align:left;
+}
+.goal-btn[aria-pressed="true"]{
+  background:var(--mint);
+  box-shadow:inset 0 0 0 3px rgba(255,255,255,.85);
+}
+.goal-btn strong{display:block;font-size:1rem}
+.goal-btn span{display:block;color:var(--muted);font-size:.82rem;margin-top:.2rem}
+.warmup-text{
+  font-size:1.25rem;
+  line-height:1.2;
+  margin:.5rem 0;
+  font-weight:950;
+}
+.parts-card,.drawalong-card{
+  margin:1rem 0 0;
+  border:2px solid var(--ink);
+  border-radius:22px;
+  background:#fffdf7;
+  padding:.9rem;
+}
+.prompt-parts{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.45rem;
+  margin:.35rem 0 .85rem;
+}
+.part-chip{
+  border:2px solid var(--ink);
+  border-radius:999px;
+  padding:.45rem .7rem;
+  background:#fff;
+  font-weight:900;
+  box-shadow:0 3px 0 var(--ink);
+}
+.part-chip:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+.part-mood,.part-feeling{background:var(--lav)}
+.part-character{background:var(--yellow)}
+.part-feature,.part-prop{background:var(--mint)}
+.part-friend,.part-pose{background:#ffe1dc}
+.drawing-guide{
+  border:2px dashed rgba(33,28,27,.42);
+  border-radius:18px;
+  padding:.8rem;
+  background:#fffaf0;
+}
+.drawing-guide h4{margin:.1rem 0 .4rem;font-size:1rem}
+.drawing-guide ol{margin:.45rem 0;padding-left:1.2rem;color:var(--muted)}
+.guide-extra{
+  display:grid;
+  gap:.35rem;
+  margin-top:.7rem;
+}
+.guide-extra p{
+  margin:0;
+  color:var(--muted);
+}
+.drawalong-list{
+  margin:.5rem 0 .9rem;
+  padding-left:1.25rem;
+}
+.drawalong-list li{
+  padding:.45rem .55rem;
+  border-radius:12px;
+  margin:.25rem 0;
+  color:var(--muted);
+}
+.drawalong-list li.current-step{
+  background:var(--yellow);
+  color:var(--ink);
+  font-weight:950;
+  outline:2px solid var(--ink);
+}
+.drawalong-list li.done-step{
+  text-decoration:line-through;
+  opacity:.7;
+}
+.skill-progress{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.5rem;
+}
+.skill-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.5rem;
+  border:2px solid var(--ink);
+  background:#fff;
+  border-radius:16px;
+  padding:.65rem .75rem;
+}
+.skill-row span{font-weight:900}
+.skill-row strong{
+  background:var(--yellow);
+  border:2px solid var(--ink);
+  min-width:2rem;
+  text-align:center;
+  border-radius:999px;
+  padding:.1rem .35rem;
+}
+#favoriteBtn[aria-pressed="true"]{
+  background:var(--lav);
+}
+@media (min-width:760px){
+  .goal-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .skill-progress{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:560px){
+  .goal-grid,.mode-grid,.feedback-grid,.stats-grid,.skill-progress{
+    grid-template-columns:1fr;
+  }
+}

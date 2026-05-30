@@ -23,6 +23,23 @@
   </header>
 
   <main id="main" class="app-shell">
+    <section class="coach-card" aria-labelledby="goalTitle">
+      <div>
+        <p class="eyebrow">Today’s learning goal</p>
+        <h2 id="goalTitle">What do you want to practice?</h2>
+      </div>
+      <div id="goalGrid" class="goal-grid" role="list"></div>
+    </section>
+
+    <section class="warmup-card" aria-labelledby="warmupTitle">
+      <div class="section-head">
+        <h2 id="warmupTitle">60-second warm-up</h2>
+        <button id="newWarmupBtn" class="text-btn" type="button">New warm-up</button>
+      </div>
+      <p id="warmupText" class="warmup-text">Loading a tiny warm-up…</p>
+      <p id="warmupWhy" class="microcopy"></p>
+    </section>
+
     <section class="hero-card" aria-labelledby="promptTitle">
       <div class="prompt-topline">
         <span id="difficultyTag" class="tag">Beginner</span>
@@ -35,6 +52,7 @@
 
       <div class="button-row">
         <button id="drawBtn" class="primary-btn" type="button">Copy for Procreate</button>
+        <button id="favoriteBtn" class="secondary-btn" type="button" aria-pressed="false">♡ Save</button>
         <button id="shuffleBtn" class="secondary-btn" type="button">Give me another</button>
       </div>
 
@@ -44,7 +62,21 @@
         <div id="drawingGuide" class="drawing-guide" aria-live="polite">
           <h4 id="guideTitle">Drawing guide</h4>
           <ol id="guideList"></ol>
+          <div class="guide-extra">
+            <p><strong>Try:</strong> <span id="guideTry"></span></p>
+            <p><strong>Avoid:</strong> <span id="guideAvoid"></span></p>
+            <p><strong>Mini challenge:</strong> <span id="guideChallenge"></span></p>
+          </div>
         </div>
+      </section>
+
+      <section class="drawalong-card" aria-labelledby="drawalongTitle">
+        <div class="section-head">
+          <h3 id="drawalongTitle">Draw-along mode</h3>
+          <button id="restartDrawAlongBtn" class="text-btn" type="button">Restart</button>
+        </div>
+        <ol id="drawAlongList" class="drawalong-list"></ol>
+        <button id="nextStepBtn" class="secondary-btn" type="button">Next step</button>
       </section>
 
       <details id="hintBox" class="hint-box" open>
@@ -61,6 +93,11 @@
         <summary>Extra challenge</summary>
         <p id="challengeText"></p>
       </details>
+
+      <details id="whyBox" class="hint-box">
+        <summary>Why this helps</summary>
+        <p id="whyText"></p>
+      </details>
     </section>
 
     <section class="mode-card" aria-labelledby="modeTitle">
@@ -72,8 +109,8 @@
       <h2 id="feedbackTitle">How did it go?</h2>
       <div class="feedback-grid">
         <button class="feedback-btn" data-status="done" type="button">Done</button>
-        <button class="feedback-btn" data-status="too-easy" type="button">Too easy</button>
-        <button class="feedback-btn" data-status="too-hard" type="button">Too hard</button>
+        <button class="feedback-btn" data-status="too-simple" type="button">Too simple</button>
+        <button class="feedback-btn" data-status="too-much" type="button">Too much</button>
         <button class="feedback-btn" data-status="skip" type="button">Skip</button>
       </div>
       <p id="feedbackMessage" class="microcopy" aria-live="polite"></p>
@@ -89,6 +126,13 @@
         <div><strong id="streakCount">0</strong><span>streak</span></div>
         <div><strong id="levelText">Sprout</strong><span>level</span></div>
       </div>
+
+      <h3>Skill practice</h3>
+      <div id="skillProgress" class="skill-progress"></div>
+
+      <h3>Saved prompts</h3>
+      <ul id="favoritesList" class="history-list"></ul>
+
       <h3>Recent prompts</h3>
       <ul id="historyList" class="history-list"></ul>
     </section>
