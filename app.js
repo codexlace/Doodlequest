@@ -1,4 +1,4 @@
-const STORAGE_KEY = "doodleQuest.v7-learning-coach";
+const STORAGE_KEY = "tinyCharacterLab.v8-studio-desk";
 const state = loadState();
 let currentPrompt = null;
 let deferredInstallPrompt = null;
@@ -866,7 +866,7 @@ function renderFavorites(){
 }
 
 function resetApp(){
-  const shouldReset = window.confirm("Reset Doodle Quest? This clears your local prompt history, streak, saved prompts, and progress.");
+  const shouldReset = window.confirm("Reset Tiny Character Lab? This clears your local prompt history, streak, saved prompts, and progress.");
   if (!shouldReset) return;
 
   localStorage.removeItem(STORAGE_KEY);
@@ -884,7 +884,7 @@ function resetApp(){
 
 function copyPrompt(){
   const steps = (currentPrompt.drawAlong || []).map((step, index) => `${index + 1}. ${step}`).join("\n");
-  const text = `Doodle Quest Prompt\n\n${currentPrompt.text}\n\nWarm-up:\n${$("warmupText").textContent}\n\nDraw-along:\n${steps}\n\nHint: ${currentPrompt.hint}\nSkill: ${currentPrompt.skill} · ${currentPrompt.time} min · ${formatDifficulty(currentPrompt.difficulty)}\nLimit: 3 colors or fewer. No full background needed.`;
+  const text = `Tiny Character Lab Prompt\n\n${currentPrompt.text}\n\nWarm-up:\n${$("warmupText").textContent}\n\nDraw-along:\n${steps}\n\nHint: ${currentPrompt.hint}\nSkill: ${currentPrompt.skill} · ${currentPrompt.time} min · ${formatDifficulty(currentPrompt.difficulty)}\nLimit: 3 colors or fewer. No full background needed.`;
   navigator.clipboard?.writeText(text).then(() => {
     $("feedbackMessage").textContent = "Prompt copied. Paste it into a Procreate reference note.";
   }).catch(() => {

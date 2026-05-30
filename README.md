@@ -1,30 +1,47 @@
-# Doodle Quest
+# Tiny Character Lab
 
-Doodle Quest is a beginner-friendly drawing prompt Progressive Web App for people practicing simple character drawings in Procreate.
+Tiny Character Lab is a cozy, beginner-friendly drawing prompt PWA for practicing tiny object-soul characters inside Procreate.
 
-This simplified version is intentionally **not scene-heavy**. Most prompts are one character, a character with a tiny friend, or a character with one prop. Tiny Scene mode exists, but it only suggests a character plus one small object.
+The app is designed around the **Tiny Studio Desk** UI theme:
+
+- **Today’s Practice** = pencil-tab goal picker
+- **Tiny Warm-Up** = sticky note warm-up card
+- **Main Doodle** = large sticky-note prompt
+- **Tap-to-Learn** = sticker chips that explain parts of the prompt
+- **Draw-Along Steps** = sketchbook checklist
+- **Saved Doodles** = small local prompt shelf
+- **Practice Trail** = simple skill progress and history
 
 It is fully static, offline-capable, installable, and ready for GitHub Pages. It does not use AI models, APIs, accounts, servers, or build tools.
 
 ## Features
 
-- Simple character-focused drawing prompts
-- Practice modes:
-  - Just a Character
-  - Character + Friend
-  - Character + Prop
-  - Faces & Feelings
-  - Brush Mini
-  - Tiny Scene
-- Tiny hints, simple steps, and optional extra challenges
-- Local progress tracking
-- Deterministic smart logic:
-  - avoids recent repeated subjects
-  - adjusts difficulty based on feedback
-  - tracks completed prompts and streaks
-- Works offline after first visit
-- Installable PWA manifest and service worker
-- Uses only vanilla HTML, CSS, and JavaScript
+- 40 tiny character types
+- 40 character + friend pairings
+- 40 character + prop prompts
+- Faces & Feelings prompts
+- Brush Mini repetition prompts
+- Tiny Scene prompts that only use one anchor object
+- Learning goal selector:
+  - Cute shapes
+  - Faces
+  - Props
+  - Tiny poses
+  - Line confidence
+  - 3-color practice
+  - Variations
+- 60-second warm-ups matched to the selected goal
+- Clickable prompt chips with beginner drawing instructions
+- Draw-along checklist for each prompt
+- Favorites / saved prompts
+- Feedback buttons:
+  - Done
+  - Too simple
+  - Too much
+  - Skip
+- Local skill progress tracking
+- Reset app button
+- Offline service worker
 
 ## Files
 
@@ -59,8 +76,8 @@ In Chrome or Edge:
 1. Open the deployed site.
 2. Open DevTools.
 3. Go to **Application → Manifest** and check that icons and manifest load.
-4. Go to **Application → Service Workers** and check that the service worker is active.
-5. Reload the page once.
+4. Go to **Application → Service Workers** and confirm the active cache is `tiny-character-lab-v8-studio-desk`.
+5. Reload once.
 6. Turn on offline mode in DevTools.
 7. Reload again. The app should still load.
 
@@ -68,69 +85,13 @@ In Chrome or Edge:
 
 Prompt ingredients live in `prompts.js`.
 
-To keep the app simple, add prompts that follow this rule:
+Keep the app’s learning style focused:
 
 ```txt
-One character, one friend, one prop, or one tiny object.
-No full scene unless it is intentionally tiny.
+One character, one friend, one prop, or one tiny anchor object.
+No full background unless the prompt intentionally says Tiny Scene.
 ```
 
-## Notes
+## Local storage
 
-This app is designed to help you practice inside Procreate. The “Draw this” button copies the prompt and hint to your clipboard when supported by the browser.
-
-The app icons are stored at the project root as `icon-192.png` and `icon-512.png`, alongside `index.html`, so the manifest and service worker use the same relative route style as the other app files.
-
-
-## Updated Prompt Set
-
-This version uses the newer object-soul and ghosty prompt system: pocket ghosts, envelope spirits, pencil kids, ink blobs, sleepy moons, tiny planets, sticker blobs, window spirits, spellbooks, and other beginner-friendly little weirdos. The prompt engine is intentionally simple: one character, one buddy, one prop, or one tiny anchor object.
-
-## Character Lab Expansion
-
-This build adds 20 more character types plus matching tiny friends and simple props in the same object-soul style.
-
-New examples include:
-- tiny receipt goblin + coupon scrap friend
-- sleepy acorn sprite + leaf blanket buddy
-- bubble tea ghost + tapioca pet
-- paper bag bat + sticker moon friend
-- soft cactus kid + pebble pal
-- tiny snowglobe spirit + snowflake friend
-
-The app now has 40 main character types, 40 friend pairings, 40 prop prompts, expanded faces/feelings, expanded brush minis, and expanded tiny scene anchors.
-
-## Reset App
-
-Use the **Reset app** button in the sketchbook trail section to clear local progress, streak, and prompt history. This only affects data stored in the browser on that device.
-
-
-## Clickable Drawing Guides
-
-This version turns prompt parts into tappable chips. For example, a prompt like “Draw a curious button-eyed cloud” can expose separate tips for:
-
-- the mood, such as curious
-- the feature, such as button-eyed
-- the character base shape, such as cloud
-- the pose or simple limit
-
-The guides are deterministic and local. They use beginner-friendly rules and shape heuristics, not AI.
-
-
-## v7 Learning Coach
-
-This build turns Doodle Quest from a prompt generator into a small offline learning coach.
-
-New learning-tool features:
-
-- **Learning goal selector** for faces, cute shapes, props, tiny poses, line confidence, color, and variations.
-- **60-second warm-up** matched to the chosen learning goal.
-- **Draw-along mode** that breaks every prompt into beginner-friendly steps.
-- **Clickable guide chips** with steps, Try, Avoid, and Mini challenge guidance.
-- **Favorites / saved prompts** for drawing later.
-- **Feedback changed to Done / Too simple / Too much / Skip** so the app can reduce clutter when prompts feel overwhelming.
-- **Skill progress tracking** for Character, Expression, Prop, Brush, Duo, and Tiny practice.
-- **Reset app** clears local history, saved prompts, streaks, and skill progress.
-- Service worker cache updated to `doodle-quest-v7-learning-coach`.
-
-All logic is deterministic and browser-only. No AI models, APIs, accounts, servers, build tools, or environment variables are used.
+The app stores progress only in the browser on the current device. The reset button clears local history, saved prompts, streaks, and skill progress.

@@ -1,7 +1,7 @@
 {
-  "name": "Doodle Quest",
-  "short_name": "Doodle Quest",
-  "description": "A simple character-focused drawing prompt coach for Procreate practice.",
+  "name": "Tiny Character Lab",
+  "short_name": "Tiny Lab",
+  "description": "A cozy offline drawing coach for tiny object-soul characters and Procreate practice.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
